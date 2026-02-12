@@ -38,6 +38,10 @@ examples/             # Example scripts and configs
 docs/                 # Architecture and operations docs
 ```
 
+## Documentation
+
+- [Codex SDK workflow](docs/codex_sdk_workflow.md): lightweight playbook for agent-driven development in this repository.
+
 ## Quick Start
 
 ```bash

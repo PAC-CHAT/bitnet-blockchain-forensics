@@ -22,6 +22,8 @@ setup(
         "web3>=6.15",
         "fastapi>=0.110",
         "pydantic>=2.6",
+        "pydantic-settings>=2.2",
+        "loguru>=0.7",
         "sqlalchemy>=2.0",
         "typer>=0.9",
         "rich>=13.7",

@@ -51,6 +51,19 @@ pip install -e .[dev,jupyter,visualization]
 pytest -q
 ```
 
+
+## GitHub Automation
+
+This project includes a `Codex Assistant` workflow at `.github/workflows/codex.yml`
+that can be triggered from GitHub conversations by mentioning `@codex` in an issue or
+PR comment.
+
+To enable it in your fork/repository:
+
+1. Create a repository secret named `OPENAI_API_KEY`.
+2. Ensure GitHub Actions are enabled for the repository.
+3. Mention `@codex` in an issue/PR comment to trigger the workflow.
+
 ## Development
 
 - Python 3.10+

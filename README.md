@@ -54,6 +54,21 @@ pytest -q
 - Linting: `ruff`
 - Testing: `pytest`
 
+## Pull Request Guidelines
+
+- Add a changelog entry under `## [Unreleased]` in `CHANGELOG.md` for any notable user-facing change.
+- Keep changelog entries concise and grouped under Keep a Changelog sections (for example: `Added`, `Changed`, `Fixed`).
+
+## Releasing
+
+1. Bump the project version in packaging metadata.
+2. Move relevant entries from `## [Unreleased]` in `CHANGELOG.md` into a new version section (for example `## [1.2.0] - 2026-02-12`).
+3. Commit the version and changelog updates.
+4. Create and push a SemVer tag (for example `v1.2.0`).
+5. Push the branch and tag to trigger the release workflow.
+
+The release workflow publishes a GitHub Release and uses the matching `CHANGELOG.md` version section as the release body when present, with generated notes as a fallback.
+
 ## License
 
 Apache 2.0. See `LICENSE`.

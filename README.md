@@ -42,6 +42,13 @@ docs/                 # Architecture and operations docs
 
 - [Codex SDK workflow](docs/codex_sdk_workflow.md): lightweight playbook for agent-driven development in this repository.
 
+## Built-in production components
+
+- **News Scraper UI**: interactive page at `/ui/news-scraper` backed by `/api/news/scrape`.
+- **Sales Dashboard with Charts**: operational dashboard at `/ui/sales-dashboard` backed by `/api/sales/metrics`.
+- **Security Review Tool**: static-analysis helper at `/ui/security-review` backed by `/api/security/review`.
+- **API Documentation Generator**: markdown docs exporter at `/ui/api-docs-generator` backed by `/api/docs/markdown`.
+
 ## Quick Start
 
 ```bash

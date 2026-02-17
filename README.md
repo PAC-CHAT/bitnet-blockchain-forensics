@@ -41,6 +41,7 @@ docs/                 # Architecture and operations docs
 ## Documentation
 
 - [Codex SDK workflow](docs/codex_sdk_workflow.md): lightweight playbook for agent-driven development in this repository.
+- [Agentic enterprise blueprints](docs/agentic_enterprise_blueprints.md): secure, stateful implementation blueprint for four production components.
 
 ## Quick Start
 

@@ -1,1 +1,1 @@
-"""Module package."""
+"""Pipeline workflows, runtime, and checkpointing."""

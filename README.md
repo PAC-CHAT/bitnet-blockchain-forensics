@@ -42,6 +42,7 @@ docs/                 # Architecture and operations docs
 
 - [Codex SDK workflow](docs/codex_sdk_workflow.md): lightweight playbook for agent-driven development in this repository.
 - [Platform capabilities](docs/platform_capabilities.md): requested platform features and package-level architecture mapping.
+- [Generative AI agent systems and workflows](docs/agentic_systems_and_workflows.md): architecture patterns, ReAct loops, multi-agent options, and full workflow templates.
 
 ## Quick Start
 

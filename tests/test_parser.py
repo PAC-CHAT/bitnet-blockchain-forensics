@@ -56,3 +56,22 @@ def test_parse_data_shard_beam_none_payload_defaults() -> None:
     assert beam.source == "unknown"
     assert beam.shard_count == 0
     assert beam.wavelength == "infrared"
+
+
+def test_parse_transaction_non_string_identifiers_are_coerced() -> None:
+    record = parse_transaction({"tx_hash": 12345, "chain": 99})
+    assert record.tx_hash == "12345"
+    assert record.chain == "99"
+
+
+def test_parse_data_shard_beam_non_string_fields_are_coerced() -> None:
+    beam = parse_data_shard_beam({"beam_id": 77, "source": 101, "wavelength": 550})
+    assert beam.beam_id == "77"
+    assert beam.source == "101"
+    assert beam.wavelength == "550"
+
+
+def test_parse_data_shard_beam_bool_strings_default() -> None:
+    beam = parse_data_shard_beam({"source": True, "wavelength": False})
+    assert beam.source == "unknown"
+    assert beam.wavelength == "infrared"

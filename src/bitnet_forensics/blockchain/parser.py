@@ -30,6 +30,18 @@ def _coerce_int(value: object, default: int = 0) -> int:
         return default
 
 
+def _coerce_str(value: object, default: str = "") -> str:
+    """Coerce incoming values to string while tolerating malformed input."""
+
+    if isinstance(value, str):
+        return value
+
+    if value is None or isinstance(value, bool):
+        return default
+
+    return str(value)
+
+
 def _as_mapping(payload: Mapping[str, Any] | None) -> Mapping[str, Any]:
     """Normalize nullable/untrusted payloads to a mapping."""
 
@@ -42,8 +54,8 @@ def _as_mapping(payload: Mapping[str, Any] | None) -> Mapping[str, Any]:
 def parse_transaction(payload: Mapping[str, Any] | None) -> TransactionRecord:
     normalized_payload = _as_mapping(payload)
     return TransactionRecord(
-        tx_hash=normalized_payload.get("tx_hash", ""),
-        chain=normalized_payload.get("chain", "unknown"),
+        tx_hash=_coerce_str(normalized_payload.get("tx_hash", ""), ""),
+        chain=_coerce_str(normalized_payload.get("chain", "unknown"), "unknown"),
         amount=_coerce_float(normalized_payload.get("amount", 0.0), 0.0),
         block_height=max(_coerce_int(normalized_payload.get("block_height", 0), 0), 0),
     )
@@ -54,8 +66,8 @@ def parse_data_shard_beam(payload: Mapping[str, Any] | None) -> DataShardBeam:
 
     normalized_payload = _as_mapping(payload)
     return DataShardBeam(
-        beam_id=normalized_payload.get("beam_id", ""),
-        source=normalized_payload.get("source", "unknown"),
+        beam_id=_coerce_str(normalized_payload.get("beam_id", ""), ""),
+        source=_coerce_str(normalized_payload.get("source", "unknown"), "unknown"),
         shard_count=max(_coerce_int(normalized_payload.get("shard_count", 0), 0), 0),
-        wavelength=normalized_payload.get("wavelength", "infrared"),
+        wavelength=_coerce_str(normalized_payload.get("wavelength", "infrared"), "infrared"),
     )

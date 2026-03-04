@@ -6,3 +6,5 @@ Architecture notes, runbooks, and operational documentation for BitNet Blockchai
 ## Available docs
 
 - [Platform capabilities](platform_capabilities.md): requested product capabilities and architecture mapping.
+- [DOM removeChild troubleshooting](troubleshooting_dom_errors.md): debugging and safe cleanup patterns for browser UI runtime errors.
+

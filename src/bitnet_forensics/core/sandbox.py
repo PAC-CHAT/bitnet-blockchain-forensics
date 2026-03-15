@@ -9,6 +9,18 @@ import sys
 from typing import Final
 
 _PATH_PATTERN: Final[re.Pattern[str]] = re.compile(r"(?:(?:[A-Za-z]:)?[/\\][^\s:\"']+)+")
+_SANDBOX_TIMEOUT_SECONDS: Final[float] = 5.0
+
+
+def _build_sandbox_env() -> dict[str, str]:
+    """Build a minimal environment to avoid leaking host secrets."""
+    env = {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUNBUFFERED": "1",
+    }
+    if "SYSTEMROOT" in os.environ:
+        env["SYSTEMROOT"] = os.environ["SYSTEMROOT"]
+    return env
 
 
 def run_in_sandbox(code: str) -> str:
@@ -17,12 +29,20 @@ def run_in_sandbox(code: str) -> str:
     Raises:
         RuntimeError: If execution fails with a non-zero exit code.
     """
-    completed = subprocess.run(
-        [sys.executable, "-I", "-c", code],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
+    try:
+        completed = subprocess.run(
+            [sys.executable, "-I", "-c", code],
+            check=False,
+            capture_output=True,
+            text=True,
+            env=_build_sandbox_env(),
+            timeout=_SANDBOX_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(
+            f"sandbox execution timed out after {_SANDBOX_TIMEOUT_SECONDS:g}s"
+        ) from exc
+
     if completed.returncode != 0:
         error_text = completed.stderr or completed.stdout or "sandbox execution failed"
         raise RuntimeError(error_text.strip())

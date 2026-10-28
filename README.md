@@ -1,106 +1,49 @@
-# BitNet Blockchain Forensics
+# BitNet Blockchain Forensics (React Edition)
 
-AI-powered blockchain forensic data review platform using BitNet b1.58-inspired workflows.
+AI-powered blockchain forensic data review platform built with React, TypeScript, Vite, and Tailwind CSS.
 
 ## Overview
 
-This repository provides a modular foundation for transaction intelligence, address risk scoring,
-entity clustering, and inference-ready reporting pipelines for blockchain investigations.
+This application provides a modular, interactive web platform for transaction intelligence, address risk scoring, entity clustering, and automated heuristic security auditing for blockchain investigations.
 
-## Architecture
+Ported from the BitNet b1.58 Python/FastAPI architecture into a high-performance React application.
 
-- **core**: Domain models, shared constants, and foundational interfaces.
-- **blockchain**: Chain adapters, transaction parsing, and address graph generation.
-- **learning**: Feature engineering and model training workflows.
-- **inference**: Batch and real-time scoring APIs.
-- **pipeline**: ETL orchestration and reproducible analysis jobs.
-- **visualization**: Graph and dashboard helpers for forensic storytelling.
+## Core Features & Built-in Production Components
 
-## Project Structure
+- **Forensics & Parser Intelligence** (`/`):
+  - **Transaction Normalizer**: Resilient parser with strict coercion for `tx_hash`, `chain`, `amount`, and non-negative `block_height`, tolerating malformed and null payloads.
+  - **Data Shard Beam & Codename**: Standardized infrared shard beam packet with Thai bilingual rendering (`formatDataShardBeamCodename`) ported from the CLI `pen` command.
+  - **Address Activity Ratio & Risk Scoring**: Dynamic risk scoring engine calculating activity ratios across counterparty distributions with risk classification badges.
+  - **Forensic Cluster Graph**: Interactive node-edge visualization for wallet clusters, mixers, smart contracts, and fund hops.
+  - **Sandboxed Executor & Traceback Sanitizer**: Isolated execution simulator with regex-based redaction of secrets, tokens, and server paths (`[PATH_REDACTED]`, `[REDACTED]`).
 
-```text
-src/bitnet_forensics/
-  api/                # FastAPI entry points and routers
-  blockchain/         # Data extraction and chain-specific parsers
-  cli/                # Typer-based command line interface
-  config/             # Runtime configuration settings
-  core/               # Shared entities and service contracts
-  data/               # Dataset schemas and loading helpers
-  inference/          # Prediction services and model serving
-  learning/           # Training pipelines and model management
-  models/             # Model wrappers and registries
-  pipeline/           # End-to-end orchestration jobs
-  utils/              # Logging, serialization, and utilities
-  visualization/      # Plotting and graph visualization tools
-tests/                # Unit and integration tests
-notebooks/            # Exploratory and reporting notebooks
-examples/             # Example scripts and configs
-docs/                 # Architecture and operations docs
-```
+- **News Scraper UI** (`/ui/news-scraper`):
+  - Interactive page backed by `/api/news/scrape` for scraping headline tags (`title`, `h1`, `h2`, `h3`) from blockchain news sources with quick preset feeds (CoinDesk, Decrypt, Bitcoin Magazine, Blockworks) and raw JSON inspection.
 
-## User-provided Custom Instructions
+- **Sales Dashboard with Charts** (`/ui/sales-dashboard`):
+  - Operational analytics dashboard backed by `/api/sales/metrics` displaying total revenue, average order value, total orders, monthly bar charts, and an interactive ledger.
 
-```text
-src/bitnet_forensics/
-  api/                # FastAPI entry points and routers
-  blockchain/         # Data extraction and chain-specific parsers
-  cli/                # Typer-based command line interface
-  config/             # Runtime configuration settings
-  core/               # Shared entities and service contracts
-  data/               # Dataset schemas and loading helpers
-  inference/          # Prediction services and model serving
-  learning/           # Training pipelines and model management
-  models/             # Model wrappers and registries
-  pipeline/           # End-to-end orchestration jobs
-  utils/              # Logging, serialization, and utilities
-  visualization/      # Plotting and graph visualization tools
-tests/                # Unit and integration tests
-notebooks/            # Exploratory and reporting notebooks
-examples/             # Example scripts and configs
-docs/                 # Architecture and operations docs
-```
+- **Security Review Tool** (`/ui/security-review`):
+  - Static analysis helper backed by `/api/security/review` evaluating API payloads for insecure HTTP protocols, hardcoded credentials, and overly permissive CORS (`*`).
 
-## Documentation
+- **API Documentation Generator** (`/ui/api-docs-generator`):
+  - Markdown route documentation exporter backed by `/api/docs/markdown` with live endpoint testing, clipboard copy, and file download.
 
-- [Codex SDK workflow](docs/codex_sdk_workflow.md): lightweight playbook for agent-driven development in this repository.
-- [Platform capabilities](docs/platform_capabilities.md): requested platform features and package-level architecture mapping.
-- [Generative AI agent systems and workflows](docs/agentic_systems_and_workflows.md): architecture patterns, ReAct loops, multi-agent options, and full workflow templates.
+- **Platform Capabilities Architecture** (`/docs/platform`):
+  - Interactive architecture explorer mapping the 5 platform capabilities (Unlimited apps, In-app code edits, Backend functions, Connect a domain, GitHub integration) into source layers.
 
-## Built-in production components
-
-- **News Scraper UI**: interactive page at `/ui/news-scraper` backed by `/api/news/scrape`.
-- **Sales Dashboard with Charts**: operational dashboard at `/ui/sales-dashboard` backed by `/api/sales/metrics`.
-- **Security Review Tool**: static-analysis helper at `/ui/security-review` backed by `/api/security/review`.
-- **API Documentation Generator**: markdown docs exporter at `/ui/api-docs-generator` backed by `/api/docs/markdown`.
-
-## Quick Start
+## Development & Build
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .[dev,jupyter,visualization]
-pytest -q
+# Install dependencies
+npm install
+
+# Start Vite dev server on port 3000
+npm run dev
+
+# Compile / Build for production
+npm run build
 ```
-
-
-## GitHub Automation
-
-This project includes a `Codex Assistant` workflow at `.github/workflows/codex.yml`
-that can be triggered from GitHub conversations by mentioning `@codex` in an issue or
-PR comment.
-
-To enable it in your fork/repository:
-
-1. Create a repository secret named `OPENAI_API_KEY`.
-2. Ensure GitHub Actions are enabled for the repository.
-3. Mention `@codex` in an issue/PR comment to trigger the workflow.
-
-## Development
-
-- Python 3.10+
-- Formatting: `black`
-- Linting: `ruff`
-- Testing: `pytest`
 
 ## License
 

@@ -1,0 +1,8 @@
+{
+  "name": "BitNet Blockchain Forensics",
+  "description": "AI-powered blockchain forensic data review platform for transaction intelligence, address risk scoring, security review, and investigative reporting.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
